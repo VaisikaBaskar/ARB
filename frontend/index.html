@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Recipe Box</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/static/css/nav.css">
+    <script src="/static/js/nav.js" defer></script>
+
+    <!-- UI Layout Enhancement – Home Screen Only -->
+    <style>
+        /* Increase max-width for the home screen to accommodate two columns */
+        body {
+            max-width: 1000px;
+        }
+
+        /* Flex container for Left Nav + Right Content */
+        .home-layout {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+            align-items: center;
+            /* Centers the right content vertically relative to the nav */
+        }
+
+        /* Override global nav styles for vertical sidebar */
+        .vertical-nav {
+            display: flex;
+            flex-direction: column;
+            width: 260px;
+            text-align: left;
+            background: #ffffff;
+            padding: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            /* Subtle shadow for the menu */
+            flex-shrink: 0;
+            margin-bottom: 0;
+            /* Remove global margin */
+        }
+
+        .vertical-nav a {
+            display: block;
+            margin: 0;
+            padding: 12px 20px;
+            color: #1B5E20;
+            /* Brand Dark Green */
+            border-left: 4px solid transparent;
+            /* Highlight marker */
+            transition: background 0.2s, border-left 0.2s;
+        }
+
+        .vertical-nav a:hover {
+            background-color: #e8f5e9;
+            /* Light green bg */
+            border-left-color: #6D4C41;
+            /* Brand Brown Accent */
+            text-decoration: none;
+            color: #6D4C41;
+            /* Brand Brown Text */
+        }
+
+        /* Right side content area */
+        .welcome-content {
+            flex-grow: 1;
+            padding: 40px;
+            text-align: center;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .welcome-content p {
+            font-size: 1.1em;
+            color: #1B5E20;
+            /* Brand Dark Green */
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>AI Recipe Box</h1>
+
+    <div class="home-layout">
+        <!-- LEFT: Vertical Navigation Menu -->
+        <nav class="vertical-nav">
+            <!-- Home Navigation Reordering – UI Only -->
+            <!-- USER -->
+            <div class="nav-header">User</div>
+            <a href="profile.html" title="View and edit your profile settings">👤 User Profile</a>
+            <a href="dashboard.html" title="View your cooking analytics and insights">📊 Dashboard</a>
+
+            <!-- CORE COOKING -->
+            <div class="nav-header">Core Cooking</div>
+            <a href="pantry.html" title="Add or remove ingredients from your pantry">🧺 Manage Pantry</a>
+            <a href="recipes.html" title="Save and organize your favorite recipes">📖 Manage Recipes</a>
+            <a href="recommend.html" title="Get smart meal ideas based on your pantry">🍽 Recommendations</a>
+
+            <!-- TOOLS -->
+            <div class="nav-header">Tools</div>
+            <a href="search.html" title="Search through our recipe database">🔍 Search</a>
+            <a href="missing.html" title="Check what ingredients you are missing for a recipe">❗ Check Missing</a>
+            <a href="shopping.html" title="Generate a shopping list from recipes">🛒 Shopping List</a>
+
+            <!-- INSIGHTS & DISCOVERY -->
+            <div class="nav-header">Insights & Discovery</div>
+            <a href="history.html" title="View your past cooked meals">🕒 History</a>
+            <a href="discover.html" title="Find new recipes from the web">🌍 Discover</a>
+
+            <!-- AI CHEF -->
+            <div class="nav-header">AI Chef</div>
+            <a href="ai_cooking_assistant.html" title="Chat with our AI Chef">🤖 AI Assistant</a>
+        </nav>
+
+        <!-- RIGHT: Welcome Card -->
+        <div class="welcome-content">
+            <h2 style="margin-bottom: 20px; color: #1B5E20;">Welcome 👋</h2>
+            <p id="user-display"
+                style="display:none; color: #1B5E20; font-weight: bold; font-size: 1.1em; margin-bottom: 15px;"></p>
+            <div style="font-size: 1.05em; line-height: 1.8; color: #444;">
+                <p style="margin: 5px 0;">Welcome to your AI-powered Kitchen Assistant.</p>
+                <p style="margin: 5px 0;">Manage your pantry, save recipes, and get smart meal recommendations.</p>
+                <p style="margin-top: 20px; font-weight: 500; color: #1B5E20;">Choose an option below to get started:
+                </p>
+            </div>
+
+            <div class="quick-start-grid">
+                <a href="pantry.html" class="action-card" title="Update your available ingredients">
+                    <h3>Manage Pantry</h3>
+                    <p>Add ingredients you currently have</p>
+                </a>
+                <a href="recipes.html" class="action-card" title="Add new recipes to your collection">
+                    <h3>Manage Recipes</h3>
+                    <p>Save or update your favorite recipes</p>
+                </a>
+                <a href="recommend.html" class="action-card" title="See what you can cook right now">
+                    <h3>Get Recommendations</h3>
+                    <p>See what you can cook right now</p>
+                </a>
+            </div>
+            <div style="margin-top: 20px;">
+                <button onclick="logoutUser()" class="secondary"
+                    style="padding: 8px 15px; font-size: 0.9em;">Logout</button>
+                <span class="logout-hint">You will be logged out safely</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authentication Layer -->
+    <script src="js/auth.js"></script>
+    <script>
+        // Protect this page
+        checkAuth(true); 
+    </script>
+</body>
+
+</html>

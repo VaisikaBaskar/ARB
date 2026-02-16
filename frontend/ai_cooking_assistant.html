@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Cooking Assistant</title>
+    <link rel="stylesheet" href="/static/css/nav.css">
+    <script src="/static/js/nav.js" defer></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            display: block;
+            /* Reset for Nav compatibility */
+        }
+
+        .page-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 60px);
+            /* Adjust for nav height */
+            padding: 20px;
+        }
+
+        .ai-cook-container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .ai-cook-heading {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+
+        .ai-cook-desc {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .ai-cook-textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+            resize: vertical;
+            box-sizing: border-box;
+            min-height: 120px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        .ai-cook-textarea:focus {
+            border-color: #28a745;
+            outline: none;
+        }
+
+        .ai-cook-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .ai-cook-btn:hover {
+            background-color: #218838;
+        }
+
+        .ai-cook-results {
+            margin-top: 30px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="page-container">
+        <div class="ai-cook-container">
+            <h1 class="ai-cook-heading">AI Cooking Assistant</h1>
+            <p class="ai-cook-desc">Describe what you want to cook and for how many people.</p>
+
+            <textarea class="ai-cook-textarea"
+                placeholder="e.g., I want to cook spicy pasta for 2 people..."></textarea>
+
+            <button class="ai-cook-btn">Ask AI</button>
+
+            <div class="ai-cook-results">
+                <!-- Reserved for future results -->
+            </div>
+        </div>
+    </main>
+
+    <script src="js/ai_cooking_assistant.js"></script>
+</body>
+
+</html>

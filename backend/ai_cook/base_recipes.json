@@ -1,0 +1,113 @@
+[
+    {
+        "dish": "chicken biryani",
+        "base_servings": 1,
+        "ingredients": [
+            {
+                "name": "chicken",
+                "quantity": 150,
+                "unit": "g"
+            },
+            {
+                "name": "basmati rice",
+                "quantity": 100,
+                "unit": "g"
+            },
+            {
+                "name": "yogurt",
+                "quantity": 2,
+                "unit": "tbsp"
+            },
+            {
+                "name": "onion",
+                "quantity": 1,
+                "unit": "count"
+            },
+            {
+                "name": "biryani masala",
+                "quantity": 1,
+                "unit": "tbsp"
+            }
+        ],
+        "steps": [
+            "Marinate chicken with yogurt and spices.",
+            "Sauté onions until golden.",
+            "Cook rice until 70% done.",
+            "Layer rice over chicken and cook on low heat."
+        ]
+    },
+    {
+        "dish": "veg pulao",
+        "base_servings": 1,
+        "ingredients": [
+            {
+                "name": "basmati rice",
+                "quantity": 100,
+                "unit": "g"
+            },
+            {
+                "name": "mixed vegetables",
+                "quantity": 150,
+                "unit": "g"
+            },
+            {
+                "name": "onion",
+                "quantity": 0.5,
+                "unit": "count"
+            },
+            {
+                "name": "cumin seeds",
+                "quantity": 0.5,
+                "unit": "tsp"
+            },
+            {
+                "name": "oil",
+                "quantity": 1,
+                "unit": "tbsp"
+            }
+        ],
+        "steps": [
+            "Wash and soak rice.",
+            "Heat oil and temper cumin seeds.",
+            "Sauté onions and vegetables.",
+            "Add rice, water, and cook until fluffy."
+        ]
+    },
+    {
+        "dish": "egg fried rice",
+        "base_servings": 1,
+        "ingredients": [
+            {
+                "name": "cooked rice",
+                "quantity": 200,
+                "unit": "g"
+            },
+            {
+                "name": "eggs",
+                "quantity": 2,
+                "unit": "count"
+            },
+            {
+                "name": "soy sauce",
+                "quantity": 1,
+                "unit": "tbsp"
+            },
+            {
+                "name": "spring onion",
+                "quantity": 2,
+                "unit": "stalks"
+            },
+            {
+                "name": "garlic",
+                "quantity": 2,
+                "unit": "cloves"
+            }
+        ],
+        "steps": [
+            "Scramble eggs and set aside.",
+            "Sauté garlic and spring onions.",
+            "Add cooked rice and soy sauce.",
+            "Mix in scrambled eggs and serve hot."
+        ]
+    }
+]

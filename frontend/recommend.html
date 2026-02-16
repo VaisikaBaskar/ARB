@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations - AI Recipe Box</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/static/css/nav.css">
+    <script src="/static/js/nav.js" defer></script>
+    <style>
+        .explanation-box {
+            display: none;
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .explanation-toggle {
+            color: #007bff;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 0.85em;
+            background: none;
+            border: none;
+            padding: 0;
+            margin-top: 5px;
+        }
+
+        .explanation-item {
+            margin-bottom: 4px;
+            display: flex;
+            align-items: flex-start;
+            gap: 5px;
+        }
+
+        .icon-check {
+            color: green;
+        }
+
+        .icon-info {
+            color: #17a2b8;
+        }
+
+        .icon-warn {
+            color: #ffc107;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Legacy Nav Removed -->
+
+    <div class="container">
+        <h2>Recipe Recommendations</h2>
+        <p class="section-hint">Discover what you can cook right now based on your pantry inventory.</p>
+
+        <div style="text-align: center; margin-bottom: 20px;">
+            <!-- User ID inferred -->
+            <button id="refreshBtn">Refresh Recommendations</button>
+        </div>
+
+        <div id="results"></div>
+
+        <div class="empty-state rec-empty">
+            <h3>No Recommendations Yet 🤷‍♂️</h3>
+            <p>Update your pantry or preferences to get matches!</p>
+        </div>
+    </div>
+
+    <!-- Authentication -->
+    <script src="js/auth.js"></script>
+    <script>
+        checkAuth(true).then(userId => {
+            if (userId && window.getRecommendations) {
+                window.getRecommendations(userId);
+            }
+        });
+    </script>
+    <script src="js/recommend.js"></script>
+</body>
+
+</html>

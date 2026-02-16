@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantry Management - AI Recipe Box</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/static/css/nav.css">
+    <script src="/static/js/nav.js" defer></script>
+</head>
+
+<body>
+    <!-- Legacy Nav Removed -->
+
+    <div class="container">
+        <h2>Pantry Management</h2>
+        <p class="section-hint">Add ingredients you currently have to get personalized recipes.</p>
+        <form id="pantryForm" class="auth-form" style="display: block;">
+            <!-- User ID is inferred from session -->
+
+            <label for="ingredient">Ingredient:</label>
+            <input type="text" id="ingredient" placeholder="Ingredient Name" required>
+
+            <label for="quantity">Quantity:</label>
+            <input type="text" id="quantity" placeholder="e.g., 200g">
+
+            <button type="submit">Add to Pantry</button>
+        </form>
+        <div id="message"></div>
+
+        <hr style="margin: 20px 0;">
+
+        <!-- Auto-load handled by JS, button removed/hidden if simpler, or kept for refresh -->
+        <div style="text-align: center;">
+            <button id="loadPantry" class="secondary">Refresh Pantry</button>
+        </div>
+        <div id="pantryResults">
+            <ul id="pantryList"></ul>
+        </div>
+
+        <!-- Note: This empty state is primarily a placeholder for future enhancement or if JS clears the list completely -->
+        <div class="empty-state pantry-empty" style="display:none;">
+            <!-- Hidden by default as logic is tricky without JS -->
+            <h3>Pantry is Empty 🧺</h3>
+            <p>Add ingredients above to start building your digital pantry.</p>
+        </div>
+    </div>
+
+    <!-- Authentication -->
+    <script src="js/auth.js"></script>
+    <script>
+        checkAuth(true).then(userId => {
+            if (userId && window.loadPantryItems) {
+                window.loadPantryItems(userId);
+            }
+        });
+    </script>
+
+    <script src="js/pantry.js"></script>
+</body>
+
+</html>

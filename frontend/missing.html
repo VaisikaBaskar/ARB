@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Missing Ingredients - AI Recipe Box</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/static/css/nav.css">
+    <script src="/static/js/nav.js" defer></script>
+    <style>
+        .result-box {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #fff;
+        }
+
+        .missing-item {
+            color: #d9534f;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Legacy Nav Removed -->
+    <div class="container">
+        <h1>Check Missing Ingredients</h1>
+        <p class="section-hint">Select a recipe to see exactly what ingredients you still need to buy.</p>
+
+        <div style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;">
+            <!-- User ID inferred -->
+
+            <label>
+                <strong>Select Recipe:</strong>
+                <select id="recipeSelect" style="width: 100%; padding: 8px;">
+                    <option value="">Loading recipes...</option>
+                </select>
+            </label>
+
+            <button id="checkBtn">Check Missing Ingredients</button>
+        </div>
+
+        <div id="results" class="result-box" style="display: none;">
+            <h3>Results:</h3>
+            <ul id="missingList"></ul>
+            <p id="statusMsg"></p>
+        </div>
+    </div>
+
+    <!-- Authentication -->
+    <script src="js/auth.js"></script>
+    <script>checkAuth(true);</script>
+    <!-- Init handled by listener mostly, but could auto-load if recipe selected? No recipe selected yet. -->
+    <script src="js/missing.js"></script>
+</body>
+
+</html>

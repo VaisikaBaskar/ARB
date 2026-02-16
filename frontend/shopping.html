@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List Helper - AI Recipe Box</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/static/css/nav.css">
+    <script src="/static/js/nav.js" defer></script>
+    <style>
+        .recipe-selection-box {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background: #fff;
+            margin-bottom: 15px;
+        }
+
+        .recipe-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .action-buy {
+            color: #dc3545;
+            /* Red */
+            font-weight: bold;
+        }
+
+        .action-replace {
+            color: #fd7e14;
+            /* Orange */
+            font-weight: bold;
+        }
+
+        .action-available {
+            color: #28a745;
+            /* Green */
+        }
+
+        .warning-badge {
+            background-color: #ffc107;
+            color: #000;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Legacy Nav Removed -->
+    <div class="container">
+        <h1>Smart Shopping Helper</h1>
+        <p class="section-hint">Plan your meals and automatically generate a shopping list for missing items.</p>
+
+        <div style="max-width: 600px; margin: 0 auto;">
+            <!-- User ID inferred -->
+
+            <div
+                style="background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 20px;">
+                <h3>Select Recipes to Cook</h3>
+                <div id="recipeSelection"
+                    style="max-height: 200px; overflow-y: auto; margin-bottom: 15px; border: 1px solid #eee; padding: 10px;">
+                    <p>Loading...</p>
+                </div>
+                <button id="generateBtn">Generate Shopping List</button>
+            </div>
+        </div>
+
+        <div id="results" style="display: none; margin-top: 30px;">
+            <h2>Your Consolidated List</h2>
+            <div id="message"></div>
+            <table id="shoppingTable">
+                <thead>
+                    <tr>
+                        <th>Ingredient</th>
+                        <th>Action</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Authentication -->
+    <script src="js/auth.js"></script>
+    <script>checkAuth(true);</script>
+
+    <script src="js/shopping.js"></script>
+</body>
+
+</html>

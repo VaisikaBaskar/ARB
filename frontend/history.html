@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal History - AI Recipe Box</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/static/css/nav.css">
+    <script src="/static/js/nav.js" defer></script>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .badge {
+            background-color: #28a745;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8em;
+        }
+
+        .form-inline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Legacy Nav Removed -->
+    <div class="container">
+        <h1>Meal History</h1>
+
+        <div class="form-inline">
+            <!-- User ID inferred -->
+            <button id="loadHistoryBtn">Refresh History</button>
+        </div>
+
+        <div id="message"></div>
+
+        <div id="historyContainer">
+            <table id="historyTable">
+                <thead>
+                    <tr>
+                        <th>Recipe</th>
+                        <th>Date</th>
+                        <th>Source</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="3" style="text-align:center;">Enter User ID to load history.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="empty-state hist-empty">
+            <h3>No Meal History 🕒</h3>
+            <p>You haven't cooked anything yet. When you cook a recipe, mark it as "Cooked" to see it here!</p>
+            <a href="recommend.html" class="button secondary">Find Something to Cook</a>
+        </div>
+    </div>
+
+    <!-- Authentication -->
+    <script src="js/auth.js"></script>
+    <script>checkAuth(true);</script>
+
+    <script src="js/history.js"></script>
+</body>
+
+</html>

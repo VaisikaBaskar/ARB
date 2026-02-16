@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Recipes - AI Recipe Box</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/static/css/nav.css">
+    <script src="/static/js/nav.js" defer></script>
+    <style>
+        .form-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .ingredient-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .ingredient-row input {
+            flex: 1;
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .tag-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        #recipeList {
+            margin-top: 30px;
+        }
+
+        .recipe-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: white;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .recipe-item:last-child {
+            border-bottom: none;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+            padding: 5px 10px;
+            font-size: 0.9em;
+        }
+
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Legacy Nav Removed -->
+    <div class="container">
+        <h1>Manage Recipes</h1>
+        <p class="section-hint">Save your favorite recipes or create new ones to build your collection.</p>
+
+        <form id="recipeForm">
+            <div class="form-section">
+                <h3>Basic Info</h3>
+                <label for="recipe_id">Recipe ID:</label>
+                <input type="text" id="recipe_id" placeholder="e.g., r1" required>
+
+                <label for="name">Recipe Name:</label>
+                <input type="text" id="name" placeholder="Recipe Name" required>
+
+                <label for="cuisine">Cuisine:</label>
+                <input type="text" id="cuisine" placeholder="e.g., Italian">
+
+                <label for="cook_time">Cook Time (mins):</label>
+                <input type="number" id="cook_time" placeholder="e.g., 30">
+
+                <label for="diet" style="margin-top: 10px; display: block;">Diet Type:</label>
+                <input type="text" id="diet" placeholder="e.g., Vegan">
+            </div>
+
+            <div class="form-section">
+                <h3>Ingredients</h3>
+                <div id="ingredientsContainer">
+                    <!-- Dynamic Rows Go Here -->
+                </div>
+                <button type="button" id="addIngredientBtn" class="secondary">+ Add Ingredient</button>
+            </div>
+
+            <div class="form-section">
+                <h3>Cooking Steps</h3>
+                <label for="cooking_steps">Instructions:</label>
+                <textarea id="cooking_steps" rows="5" placeholder="Enter cooking steps here..."
+                    style="width: 100%; padding: 10px; margin-top: 5px;"></textarea>
+            </div>
+
+            <div class="form-section">
+                <h3>Dietary Tags</h3>
+                <div class="tags-container">
+                    <div class="tag-item"><input type="checkbox" name="dietary_tag" value="veg"> Veg</div>
+                    <div class="tag-item"><input type="checkbox" name="dietary_tag" value="vegan"> Vegan</div>
+                    <div class="tag-item"><input type="checkbox" name="dietary_tag" value="gluten-free"> Gluten-Free
+                    </div>
+                    <div class="tag-item"><input type="checkbox" name="dietary_tag" value="high-protein"> High-Protein
+                    </div>
+                    <div class="tag-item"><input type="checkbox" name="dietary_tag" value="low-oil"> Low-Oil</div>
+                </div>
+            </div>
+
+            <button type="submit">Save Recipe</button>
+        </form>
+
+        <div id="message"></div>
+
+        <div id="recipeListContainer">
+            <h2>Saved Recipes</h2>
+            <div id="recipeList">Loading recipes...</div>
+
+            <div class="empty-state recipe-empty">
+                <h3>No Recipes Yet 🍳</h3>
+                <p>You haven't added any recipes yet. Start by saving your first favorite!</p>
+                <button class="secondary" onclick="document.getElementById('name').focus()">Create New Recipe</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recipe View Modal -->
+    <div id="recipeModalOverlay" class="modal-overlay" style="display: none;">
+        <div id="recipeModal" class="modal-box">
+            <div class="modal-header">
+                <h2 id="modalTitle">Recipe Details</h2>
+                <button id="modalCloseBtn" onclick="closeRecipeModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Cuisine:</strong> <span id="modalCuisine"></span></p>
+                <div id="modalTags" class="modal-tags"></div>
+
+                <h3>Ingredients</h3>
+                <ul id="modalIngredients"></ul>
+
+                <h3>Instructions</h3>
+                <div id="modalSteps"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkpoint 21 - Advanced UI Script -->
+    <!-- Authentication -->
+    <script src="js/auth.js"></script>
+    <script>checkAuth(true);</script>
+
+    <script src="js/recipes_advanced.js"></script>
+</body>
+
+</html>

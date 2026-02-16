@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - AI Recipe Box</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/static/css/nav.css">
+    <script src="/static/js/nav.js" defer></script>
+    <style>
+        .profile-header-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #e0e0e0;
+        }
+
+        .profile-info {
+            flex-grow: 1;
+        }
+
+        .profile-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .profile-username {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .profile-bio {
+            font-size: 0.95em;
+            color: #333;
+            margin-top: 5px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 20px;
+            width: 500px;
+            border-radius: 10px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .section-title {
+            margin-top: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            color: #444;
+        }
+
+        .pref-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .pref-item strong {
+            display: block;
+            color: #666;
+            font-size: 0.85em;
+        }
+
+        .pref-item span {
+            font-weight: 500;
+            font-size: 1.05em;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>User Profile</h1>
+    <!-- Legacy Nav Removed -->
+    <div class="container">
+
+        <!-- USER ID (Test) -->
+        <!-- USER ID (Hidden for internal logic) -->
+        <input type="hidden" id="user_id">
+        <!-- User ID loader removed (was for testing). Profile now auto-loads. -->
+        <div id="message"></div>
+
+        <!-- PROFILE DISPLAY (READ ONLY) -->
+        <div class="profile-header-card">
+            <img id="display_avatar" src="https://ui-avatars.com/api/?name=User" class="profile-avatar" alt="Profile">
+            <div class="profile-info">
+                <h2 id="display_name" class="profile-name">Loading...</h2>
+                <div id="display_username" class="profile-username">@loading</div>
+                <div id="display_bio" class="profile-bio">Please load a user ID.</div>
+            </div>
+            <button id="editProfileBtn" class="primary">Edit Profile</button>
+        </div>
+
+        <h3 class="section-title">Cooking Preferences</h3>
+        <div class="pref-grid">
+            <div class="pref-item">
+                <strong>Diet</strong>
+                <span id="view_diet">Not set</span>
+            </div>
+            <div class="pref-item">
+                <strong>Favorite Cuisines</strong>
+                <span id="view_cuisines">Not set</span>
+            </div>
+            <div class="pref-item">
+                <strong>Dietary Tags</strong>
+                <span id="view_tags">Not set</span>
+            </div>
+            <div class="pref-item">
+            </div>
+            <div class="pref-item" style="grid-column: span 2;">
+                <strong>Liked Ingredients</strong>
+                <span id="view_liked">Not set</span>
+            </div>
+            <div class="pref-item" style="grid-column: span 2;">
+                <strong>Disliked Ingredients</strong>
+                <span id="view_disliked">Not set</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- UNIFIED EDIT MODAL -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Profile</h3>
+                <button type="button" id="cancelEditBtn"
+                    style="background:none; border:none; font-size:1.5em; cursor:pointer;">&times;</button>
+            </div>
+
+            <!-- TAB 1: SOCIAL -->
+            <h4 style="color:#1B5E20; border-bottom: 2px solid #E8F5E9; padding-bottom: 5px; margin-top:0;">Basic Info
+            </h4>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="edit_fullname" maxlength="50">
+            </div>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="edit_username" maxlength="30">
+            </div>
+            <div class="form-group">
+                <label>Bio</label>
+                <textarea id="edit_bio" rows="2" maxlength="160"
+                    style="width: 100%; border:1px solid #ccc; border-radius:4px;"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Avatar URL</label>
+                <input type="text" id="edit_avatar" placeholder="https://">
+            </div>
+
+            <!-- TAB 2: PREFERENCES -->
+            <h4 style="color:#1B5E20; border-bottom: 2px solid #E8F5E9; padding-bottom: 5px; margin-top:20px;">Cooking
+                Preferences</h4>
+
+            <div class="form-group">
+                <label>Diet</label>
+                <select id="edit_diet" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 100%;">
+                    <option value="">Select Diet</option>
+                    <option value="veg">Veg</option>
+                    <option value="non-veg">Non-Veg</option>
+                    <option value="vegan">Vegan</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Favorite Cuisines</label>
+                <div class="checkbox-group" id="edit_cuisines_group">
+                    <div class="checkbox-item"><input type="checkbox" name="edit_cuisine" value="Indian"> Indian</div>
+                    <div class="checkbox-item"><input type="checkbox" name="edit_cuisine" value="Chinese"> Chinese</div>
+                    <div class="checkbox-item"><input type="checkbox" name="edit_cuisine" value="Italian"> Italian</div>
+                    <div class="checkbox-item"><input type="checkbox" name="edit_cuisine" value="Mexican"> Mexican</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Dietary Tags</label>
+                <div class="checkbox-group" id="edit_tags_group">
+                    <div class="checkbox-item"><input type="checkbox" name="edit_tag" value="low-oil"> Low-Oil</div>
+                    <div class="checkbox-item"><input type="checkbox" name="edit_tag" value="diabetic"> Diabetic</div>
+                    <div class="checkbox-item"><input type="checkbox" name="edit_tag" value="gluten-free"> Gluten-Free
+                    </div>
+                    <div class="checkbox-item"><input type="checkbox" name="edit_tag" value="high-protein"> High-Protein
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Liked Ingredients (comma separated)</label>
+                <input type="text" id="edit_liked" placeholder="paneer, chicken">
+            </div>
+            <div class="form-group">
+                <label>Disliked Ingredients (comma separated)</label>
+                <input type="text" id="edit_disliked" placeholder="karela">
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button id="saveAllBtn" class="primary" style="width: 100%; padding: 12px;">Save Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authentication -->
+    <script src="js/auth.js"></script>
+    <script>checkAuth(true);</script>
+    <script src="js/profile.js"></script>
+</body>
+
+</html>

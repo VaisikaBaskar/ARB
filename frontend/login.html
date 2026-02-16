@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AI Recipe Box</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/static/css/nav.css">
+    <script src="/static/js/nav.js" defer></script>
+</head>
+
+<body>
+    <h1>AI Recipe Box</h1>
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <h2>Login</h2>
+            <form id="loginForm" class="auth-form">
+                <label>User ID:</label>
+                <input type="text" id="uid" required placeholder="Enter your User ID">
+
+                <label>Password:</label>
+                <input type="password" id="pwd" required placeholder="Enter your password">
+
+                <button type="submit">Login</button>
+            </form>
+            <div class="auth-link">
+                New here? <a href="signup.html">Create an Account</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        // Check if already logged in
+        checkAuth(false);
+
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const u = document.getElementById('uid').value;
+            const p = document.getElementById('pwd').value;
+            login(u, p);
+        });
+    </script>
+</body>
+
+</html>

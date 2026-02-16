@@ -1,0 +1,101 @@
+/* Navigation Bar Styles - Clean & Modern */
+/* Scoped styles only - No global body resets */
+/* Spacing handled by nav.js spacer */
+
+.app-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 56px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    box-sizing: border-box;
+    z-index: 10000;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.app-nav .nav-left,
+.app-nav .nav-right {
+    flex: 0 0 80px;
+    /* Fixed width for buttons to center nav */
+    display: flex;
+    justify-content: center;
+}
+
+.app-nav .nav-center {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    overflow-x: auto;
+    /* Handle small screens */
+}
+
+/* Links */
+.app-nav .nav-link {
+    text-decoration: none;
+    color: #444;
+    /* Clean dark gray */
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.app-nav .nav-link:hover {
+    background-color: #f0f0f0;
+    color: #000;
+}
+
+.app-nav .nav-link.active {
+    background-color: #e8f5e9;
+    /* Light green tint matching brand likely */
+    color: #2e7d32;
+    /* Dark green */
+    font-weight: 600;
+}
+
+/* Buttons (Back / Next) */
+.app-nav .nav-btn {
+    text-decoration: none;
+    background: none;
+    border: 1px solid #ddd;
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: #555;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.app-nav .nav-btn:hover {
+    background-color: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+.app-nav .back-btn {
+    font-weight: 600;
+}
+
+.app-nav .next-btn {
+    background-color: #f8f9fa;
+}
+
+.app-nav .next-btn:hover {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+}

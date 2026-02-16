@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - AI Recipe Box</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/static/css/nav.css">
+    <script src="/static/js/nav.js" defer></script>
+</head>
+
+<body>
+    <h1>AI Recipe Box</h1>
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <h2>Create Account</h2>
+            <form id="signupForm" class="auth-form">
+                <label>User ID (Username):</label>
+                <input type="text" id="uid" required placeholder="Choose a User ID">
+
+                <label>Password:</label>
+                <input type="password" id="pwd" required placeholder="Create a password">
+
+                <label>Confirm Password:</label>
+                <input type="password" id="pwd2" required placeholder="Confirm your password">
+
+                <button type="submit">Sign Up</button>
+            </form>
+            <div class="auth-link">
+                Already have an account? <a href="login.html">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        checkAuth(false);
+
+        document.getElementById('signupForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const u = document.getElementById('uid').value;
+            const p = document.getElementById('pwd').value;
+            const p2 = document.getElementById('pwd2').value;
+
+            if (p !== p2) {
+                alert("Passwords do not match");
+                return;
+            }
+            signup(u, p);
+        });
+    </script>
+</body>
+
+</html>

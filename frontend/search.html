@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Recipes - AI Recipe Box</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/static/css/nav.css">
+    <script src="/static/js/nav.js" defer></script>
+    <style>
+        .filter-section {
+            background: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .toggle-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .toggle-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 15px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .recipe-card {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Legacy Nav Removed -->
+    <div class="container">
+        <h1>Find Recipes</h1>
+
+        <!-- Search Filters -->
+        <div class="filter-section">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="ingredient">Ingredient:</label>
+                    <input type="text" id="ingredient" placeholder="e.g. Chicken, Paneer">
+                </div>
+                <div class="filter-group">
+                    <label for="cuisine">Cuisine:</label>
+                    <select id="cuisine">
+                        <option value="">Any</option>
+                        <option value="Indian">Indian</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Italian">Italian</option>
+                        <option value="Mexican">Mexican</option>
+                        <option value="American">American</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="max_cook_time">Max Cook Time (mins):</label>
+                    <input type="number" id="max_cook_time" placeholder="e.g. 30">
+                </div>
+            </div>
+
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label>Dietary:</label>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                        <label><input type="radio" name="dietary_tag" value="" checked> Any</label>
+                        <label><input type="radio" name="dietary_tag" value="veg"> Veg</label>
+                        <label><input type="radio" name="dietary_tag" value="vegan"> Vegan</label>
+                        <label><input type="radio" name="dietary_tag" value="gluten-free"> Gluten-Free</label>
+                        <label><input type="radio" name="dietary_tag" value="high-protein"> High-Protein</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label>Special Filters:</label>
+                    <div class="toggle-group">
+                        <label class="toggle-item"><input type="checkbox" id="quick"> Quick (< 20m)</label>
+                                <label class="toggle-item"><input type="checkbox" id="healthy"> Healthy</label>
+                                <label class="toggle-item"><input type="checkbox" id="budget"> Budget Friendly</label>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 15px;">
+                <button id="searchBtn">Search Recipes</button>
+                <button id="clearBtn" class="secondary" style="background:#6c757d;">Clear Filters</button>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div id="resultsArea">
+            <h3 id="resultCount">Results</h3>
+            <div id="resultsGrid" class="results-grid"></div>
+        </div>
+    </div>
+
+    <!-- Authentication -->
+    <script src="js/auth.js"></script>
+    <script>checkAuth(true);</script>
+
+    <script src="js/search.js"></script>
+</body>
+
+</html>

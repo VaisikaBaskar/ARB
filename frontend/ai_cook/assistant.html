@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Cooking Assistant</title>
+    <!-- Read-only access to main styles for consistency -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .ai-assistant-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fdfdfd;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e1e4e8;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #0d47a1;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="../../index.html">← Back to Recipe Box</a>
+    </nav>
+
+    <div class="ai-assistant-container">
+        <div class="status-badge">AI Module: Isolated Mode</div>
+        <h1>AI Cooking Assistant 🤖</h1>
+        <p>Welcome to the experimental cooking assistant.</p>
+        <p>This module operates independently from your main recipe data.</p>
+
+        <div style="margin-top: 30px; padding: 20px; border: 2px dashed #ddd; text-align: center; color: #666;">
+            <em>Assistant is currently in read-only / stateless mode.</em>
+            <br><br>
+            <p id="statusOutput" style="margin-top: 15px; font-weight: bold;"></p>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <h3>Ask the Chef 🧑‍🍳</h3>
+            <p style="color: #666; font-size: 0.9em;">Describe what you want to cook in your own words.</p>
+
+            <div style="margin-top: 15px;">
+                <textarea id="aiInput" rows="4"
+                    placeholder="e.g. 'I want to make something spicy with chicken and rice for 2 people'..."
+                    style="width: 100%; padding: 15px; border-radius: 8px; border: 1px solid #ccc; font-family: inherit; font-size: 1rem; resize: vertical;box-sizing: border-box;"></textarea>
+            </div>
+
+            <div style="margin-top: 15px; text-align: right;">
+                <button id="askAiBtn" class="primary" style="background-color: #28a745; border-color: #28a745;">Ask
+                    AI</button>
+            </div>
+
+            <div id="aiResponse"
+                style="margin-top: 20px; padding: 20px; background: #f0f8ff; border-radius: 8px; border-left: 4px solid #007bff; display: none;">
+                <strong style="display: block; margin-bottom: 10px; color: #0056b3;">AI Response (Preview):</strong>
+                <p id="responseText" style="margin: 0; white-space: pre-wrap;"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="assistant.js"></script>
+</body>
+
+</html>
